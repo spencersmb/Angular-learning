@@ -1,0 +1,121 @@
+
+<!--this tells the page use the controller nameApp - you could have multiple nameApps on a page-->
+<!DOCTYPE html>
+
+
+<!--[if lt IE 7]>      <html lang="en" ng-app="nameApp" class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html lang="en" ng-app="nameApp" class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html lang="en" ng-app="nameApp" class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html lang="en" ng-app="nameApp" class="no-js"> <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>My AngularJS App</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="bower_components/html5-boilerplate/css/normalize.css">
+  <link rel="stylesheet" href="bower_components/html5-boilerplate/css/main.css">
+  <link rel="stylesheet" href="app.css">
+  <script src="bower_components/html5-boilerplate/js/vendor/modernizr-2.6.2.min.js"></script>
+<script >
+
+</script>
+</head>
+
+<!--Use this function as the controller for this protion of the html - doesnt have to be on the body, it could be on the div somewhere.-->
+<body ng-controller="NameCtrl">
+
+  First Name: <input ng-model="firstName" type="text"/>
+  Last Name: <input ng-model="lastName" type="text"/>
+  <p>Hello {{firstName}} {{lastName}}</p> <br/>
+
+  <ul>
+    <!--use ng repeat to loop through an array of content like a for-each loop output the element. Result is 1 li per name-->
+    <li ng-repeat="name in names">{{name}}
+      <!--add ng-click directive to fire the removename function that takes in the name-->
+      <!--remove is now nested in the scope of names-->
+      <a href="#" ng-click="removeName(name)">Remove</a>
+    </li>
+    <br/>
+    
+    <!--Form example-->
+
+    <!--ng-something is an example of an angular expression-->
+    <!--this expression calls a function instead of binding to just data-->
+    <form name="userForm" ng-submit="addName()" action="">
+
+      <!--ng-class adds classes if item is true-->
+      <div class="test" ng-class="{ 'has-error': userForm.myfield.$invalid }">
+
+      <!--this text input is bound to the enteredName property-->
+      <input name="myfield" class="formControl" type="text" ng-model="enteredName"  placeholder="name" required class="form-control"/>
+
+        <!--use css to detect if classes are on p tag or not-->
+        <!--http://blog.yodersolutions.com/bootstrap-form-validation-done-right-in-angularjs/-->
+        <p class="help-block" ng-if="userForm.myfield.$error.required">The user's name is required</p>
+
+      </div>
+      <!--<span ng-show="userForm.myfield.$error.required">Please enter something!</span><br/>-->
+      <!--<span ng-hide="!myform.myfield.$error.required">Good boy!</span>-->
+      <input type="submit" value="add"/>
+      <!--<div class="alert alert-danger"-->
+           <!--ng-show="userForm.myfield.$error.required && userForm.myfield.$dirty">-->
+        <!--Please enter your name!-->
+      <!--</div>-->
+    </form>
+  </ul>
+  <div ng-controller="CountryCtrl">
+    <ul>
+
+      <!--using outer expression refference - name and inner - population-->
+      <li ng-repeat="country in countries">{{country.name}} - population {{country.population}}</li>
+
+    </ul>
+
+
+    <div ng-controller="CountryHttpCtrl" class="country-container">
+
+      <!--add ng-model = query for to search through data-->
+      Search: <input ng-model="query" type="text"/>
+    <table>
+      <tr>
+
+        <!--using sortfield here redefines the variable so it knows the population has changed to name-->
+        <!--reverse is now a toggle with how it was written-->
+        <th><a href="" ng-click="sortField = 'name'; reverse = !reverse">Country</a></th>
+        <th><a href="" ng-click="sortField = 'population'; reverse = !reverse">Population</a></th>
+        <th>Flag</th>
+      </tr>
+
+      <!--add filter:query to give search functionality & add - sign infront of population -->
+      <!--orderBy:'-population' - option hardcoded-->
+      <tr ng-repeat="country in countries | filter:query | orderBy:sortField:reverse ">
+
+        <!--can us the variables as classes or id's-->
+        <td id="{{country.name}}">{{country.name}}</td>
+        <td class="{{country.name}}">{{country.population}}</td>
+
+        <!--use ng-src to load in dynamic content -->
+        <td><img ng-src="{{country.flagURL}}" width="100"></td>
+      </tr>
+    </table>
+    </div>
+
+
+
+  </div>
+
+
+  <!-- In production use:
+  <script src="//ajax.googleapis.com/ajax/libs/angularjs/x.x.x/angular.min.js"></script>
+  -->
+  <script src="bower_components/angular/angular.js"></script>
+  <script src="bower_components/angular-route/angular-route.js"></script>
+  <script src="app.js"></script>
+  <script src="view1/view1.js"></script>
+  <script src="view2/view2.js"></script>
+  <script src="components/version/version.js"></script>
+  <script src="components/version/version-directive.js"></script>
+  <script src="components/version/interpolate-filter.js"></script>
+</body>
+</html>

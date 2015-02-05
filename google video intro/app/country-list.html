@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<!--do not need to add extra angular stuff in the html-->
+Search: <input ng-model="query" type="text"/>
+
+<br/><br/>
+
+<a href="" ng-click="sortField = 'name'; reverse = !reverse">Sort by Name</a>
+
+<ul>
+    <li ng-repeat="country in countries | filter:query | orderBy:sortField:reverse ">
+        <a href="#/{{country.name | encodeURI}}">{{country.name}}</a>
+    </li>
+
+<ul>
+</body>
+</html>

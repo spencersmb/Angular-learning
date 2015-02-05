@@ -1,0 +1,9 @@
+<!--STEP 4 DATA SHARING-->
+    <input type="text" ng-model="first.greeting.message">
+    <div>
+        {{ first.greeting.message }} World
+    </div>
+    <div ng-controller="SecondCtrl as second">
+        {{ second.greeting.message }} in Second
+    </div>
+    <div ui-sref="second">Go to second</div>
