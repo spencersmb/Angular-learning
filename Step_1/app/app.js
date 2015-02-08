@@ -1,84 +1,79 @@
-//'use strict';
-//
-//// Declare app level module which depends on views, and components
-//angular.module('myApp', [
-//  'ngRoute',
-//  'myApp.view1',
-//  'myApp.view2',
-//  'myApp.version'
-//]).
-//config(['$routeProvider', function($routeProvider) {
-//  $routeProvider.otherwise({redirectTo: '/view1'});
-//}]);
 
 
-//// Declare app level module which depends on views, and components
-//Seperate controllers
-//var myapp = angular.module('app', []);
-//
-//    myapp.controller('FirstCtrl', function($scope) {
-//
-//      $scope.data = {message: "Hello"};
-//    });
-//    myapp.controller('SecondCtrl', function($scope) {
-//
-//      $scope.data = {message: "Hello"};
-//    });
+///////////////////////////////////////////
+//Directives
+//////////////////////////////////////////
 
+//var app = angular.module("superhero", []);
 
-//This allows us to bind anything with data.message to everything that has that same model using "this" keyword.
-//angular.module('app', [])
-//
-//    .controller('FirstCtrl', function FirstCtrl() {
-//      var first = this;
-//
-//      first.data = "First"
-//    })
-//
-//
-//    .controller('SecondCtrl', function SecondCtrl() {
-//      var second = this;
-//
-//      second.data = "Second"
+//memorive this syntax
+//return object
+//"E" element
+//This creates a new HTML5 element like NAV or FOOTER
+//app.directive("superman", function() {
+//  return {
+//    restrict: "E",
+//    template: "<div>Here I am to save the day</div>"
+//  };
 //});
 
 
-//SHARING DATA BETWEEN CONTROLLERS
-//DEPENDENT ON UI_ROUTER
-//We can share data using a service and it gets passed to other controllers
-angular.module('app', ['ui.router'])
+////CREATE AN ATTRIBUTE
+//app.directive("superman", function() {
+//  return {
+//    //C for class,
+//    //Behaviors are best used as attributes
+//    restrict: "A",
+//    link: function(){
+//      alert("I am working");
+//    }
+//  };
+//});
 
-    .config(function config($stateProvider){
-      $stateProvider.state('index', {
-        url: '',
-        controller: 'FirstCtrl as first',
-        templateUrl: "templates/first.html"
-      })
-      $stateProvider.state('second', {
-        url: '/second',
-        controller: 'SecondCtrl as second',
-        templateUrl: "templates/second.html"
-      })
-    })
+///////////////////////////////////////////
+//BEHAVIORS
+//////////////////////////////////////////
 
-  //This is a state we use .service and create a function called greeting
-  //  In our templates we bind to this message
-    .service('greeting', function Greeting() {
-      var greeting = this;
-      greeting.message = 'Default';
-    })
-  //We pass greeting into the first ctrl - then we say whatever FirstCtrl is - it will match greeting function.
-    .controller('FirstCtrl', function FirstCtrl(greeting) {
-      var first = this;
+//var app = angular.module("behaviorApp", []);
+//
+//app.directive("enter", function() {
+//  return function(scope, element, attrs) {
+//    element.bind("mouseenter", function() {
+//      element.addClass(attrs.enter);
+//    });
+//  };
+//});
+//
+//app.directive("leave", function() {
+//  return function(scope, element, attrs) {
+//    element.bind("mouseleave", function() {
+//      element.removeClass(attrs.enter);
+//    });
+//  };
+//});
 
-      first.greeting = greeting;
-    })
-  //We pass greeting into the second ctrl - then we say whatever SecondCtrl is - it will match greeting function.
-    .controller('SecondCtrl', function SecondCtrl(greeting) {
-      var second = this;
 
-      second.greeting = greeting;
-    })
-;
+//DIRECTIVES TALKING TO DIRECTIVES
+
+var app = angular.module("twitterApp", []);
+
+app.controller("AppCtrl", function() {
+  var appCtrl = this;
+  appCtrl.loadMoreTweets = function() {
+    alert("Loading tweets!");
+  };
+
+  appCtrl.deleteTweets = function() {
+    alert("deleting tweets");
+  };
+});
+
+app.directive("enter", function() {
+  return function(scope, element, attrs) {
+    element.bind("mouseenter", function() {
+      scope.$apply(attrs.enter);
+    });
+  };
+});
 
 

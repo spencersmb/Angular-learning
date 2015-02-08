@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<!--[if lt IE 7]>      <html lang="en" ng-app="app" class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]>         <html lang="en" ng-app="app" class="no-js lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]>         <html lang="en" ng-app="app" class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]><!--> <html lang="en" ng-app="app" class="no-js"> <!--<![endif]-->
+<!--[if lt IE 7]>      <html lang="en" ng-app="myApp" class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html lang="en" ng-app="myApp" class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html lang="en" ng-app="myApp" class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html lang="en" ng-app="myApp" class="no-js"> <!--<![endif]-->
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -15,6 +15,7 @@
   <script src="bower_components/html5-boilerplate/js/vendor/modernizr-2.6.2.min.js"></script>
 </head>
 <body>
+
   <!--<ul class="menu">-->
     <!--<li><a href="#/view1">view1</a></li>-->
     <!--<li><a href="#/view2">view2</a></li>-->
@@ -39,8 +40,44 @@
     <!--</div>-->
   <!--</div>-->
 
-REDO USING NGROUTE
-https://egghead.io/lessons/angularjs-sharing-data-between-controllers
+
+<!--Adding a method-->
+    <!--<div ng-controller="FirstCtrl">-->
+      <!--<input type="text" ng-model="data.message">-->
+      <!--<h1>{{data.message}}</h1>-->
+    <!--</div>-->
+
+    <!--<div ng-controller="SecondCtrl">-->
+      <!--<input type="text" ng-model="data.message">-->
+      <!--<h1>{{reversedMessage(data.message)}}</h1>-->
+    <!--</div>-->
+
+
+  <!--Setting up a filter-->
+  <!--<div ng-controller="FirstCtrl as firstCtrl">-->
+    <!--<input type="text" ng-model="firstCtrl.data.message">-->
+    <!--<h1>{{firstCtrl.data.message}}</h1>-->
+  <!--</div>-->
+
+  <!--<div ng-controller="SecondCtrl as secondCtrl">-->
+    <!--<input type="text" ng-model="secondCtrl.data.message">-->
+    <!--<h1>{{secondCtrl.data.message|reverse}}</h1>-->
+  <!--</div>-->
+
+
+
+
+  <!--ng-repeat and filters-->
+  <div ng-controller="AvengersCtrl as avengersCtrl">
+    <input type="text" ng-model="search.$">
+    <table>
+      <tr ng-repeat="actor in avengersCtrl.avengers.cast | filter:search">
+        <td>{{actor.name}}</td>
+        <td>{{actor.character}}</td>
+      </tr>
+    </table>
+  </div>
+
 
 
   <!-- In production use:
@@ -48,11 +85,12 @@ https://egghead.io/lessons/angularjs-sharing-data-between-controllers
   -->
   <script src="bower_components/angular/angular.js"></script>
   <script src="bower_components/angular-route/angular-route.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.13/angular-ui-router.js"></script>
+  <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.13/angular-ui-router.js"></script>-->
 
   <!--<script src="js/main.js"></script>-->
 
   <script src="app.js"></script>
+  <script src="filters_bindings.js"></script>
   <script src="view1/view1.js"></script>
   <script src="view2/view2.js"></script>
   <script src="components/version/version.js"></script>
