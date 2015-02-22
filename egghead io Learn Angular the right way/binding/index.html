@@ -1,18 +1,55 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>AngularJS Tutorials</title>
+    <title>AngularJS Hello World</title>
 
 </head>
 <body>
 
-<div ng-app="">
+
+
+  <!--In order to get data into a template we need to create a controller.-->
+  <!--using the ng-model gives us access to 2-way data binding-->
+  <!--<div ng-controller="World">-->
+
+  <!--<div ng-app="HelloWorld">-->
+    <!--<input ng-model='greeting' type="text">-->
+    <!--<input ng-model='text' type="text">-->
+    <!--<p>-->
+      <!--{{greeting}} {{text}}.-->
+    <!--</p>-->
+
+
+  <!--</div>-->
+    <!--</div>-->
+
+  <div ng-app="app">
     <div ng-controller="FirstCtrl">
-        <h1>{{data.message + " world"}}</h1>
-        <div class="{{data.message}}">
-            Wrap me in a foundation component
-        </div>
+      <input type="text" ng-model="data.message"/>
+      <h1>{{data.message}}</h1>
     </div>
+
+    <div ng-controller="SecondCtrl">
+      <input type="text" ng-model="data.message">
+      <!--pass in the data.message here so we dont need to pass in scope-->
+      <h1>{{reversedMessage(data.message)}}</h1>
+    </div>
+
+  </div>
+
+
+  <!--DIRECTIVE EXAMPLE-->
+  <!--<div hello >-->
+
+  <!--</div>-->
+    <!--<div ng-controller="FirstCtrl">-->
+        <!--<h1>{{data.message + " world"}}</h1>-->
+        <!--<div class="{{data.message}}">-->
+            <!--Wrap me in a foundation component-->
+        <!--</div>-->
+    <!--</div>-->
+
+
 </div>
 
 <script type="text/javascript" src="vendor/angular.js"></script>

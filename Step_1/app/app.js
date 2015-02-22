@@ -1,79 +1,108 @@
 
 
 ///////////////////////////////////////////
-//Directives
+//Isolate Scope
 //////////////////////////////////////////
 
-//var app = angular.module("superhero", []);
 
-//memorive this syntax
-//return object
-//"E" element
-//This creates a new HTML5 element like NAV or FOOTER
-//app.directive("superman", function() {
+//
+//var app = angular.module("choreApp", []);
+//
+//app.controller("ChoreCtrl", function() {
+//  var choreCtrl = this;
+//  choreCtrl.logChore = function(chore) {
+//    alert(chore + " is done!");
+//  };
+//});
+//
+//
+//app.directive("kid", function() {
 //  return {
 //    restrict: "E",
-//    template: "<div>Here I am to save the day</div>"
+//    scope: {
+//      //& for expression binding
+//      done: "&"
+//    },
+//    //ng-model binds string chore with {{chore}}
+//    // concat div ng-click is bound as an attr to the kid element in the html - which then calls the choreCtrl.logChore function and passes in the Chore object.
+//    //chore:chore - first is the property(chore) - mapped to the 2nd chore value
+//    template: '<input type="text" ng-model="taskA">' +
+//    ' {{taskA}}' +
+//    ' <div class="button" ng-click="done({taskB:taskA})">I\'m done!</div>'
 //  };
 //});
 
 
-////CREATE AN ATTRIBUTE
-//app.directive("superman", function() {
-//  return {
-//    //C for class,
-//    //Behaviors are best used as attributes
-//    restrict: "A",
-//    link: function(){
-//      alert("I am working");
-//    }
-//  };
-//});
+
 
 ///////////////////////////////////////////
-//BEHAVIORS
+//Isolate Scope @
 //////////////////////////////////////////
 
-//var app = angular.module("behaviorApp", []);
+//var app = angular.module("drinkApp", []);
 //
-//app.directive("enter", function() {
-//  return function(scope, element, attrs) {
-//    element.bind("mouseenter", function() {
-//      element.addClass(attrs.enter);
-//    });
-//  };
+//app.controller("AppCtrl", function() {
+//  var appctrl = this;
+//  appctrl.ctrlFlavor = "blackberry";
 //});
 //
-//app.directive("leave", function() {
-//  return function(scope, element, attrs) {
-//    element.bind("mouseleave", function() {
-//      element.removeClass(attrs.enter);
-//    });
+////what this directive does it bind itself to the controller above using the attr flavor and adds a div with whatever is bound to the input via the html
+//app.directive("drink", function() {
+//  return {
+//    scope: {
+//      // pass whatever is on flavor as a string and as the scope - then you have access to it on the scope inside the directive- and we bind it inside the div here.
+//      flavor: "@"
+//    },
+//    template: '<div>{{flavor}}</div>'
 //  };
 //});
 
 
-//DIRECTIVES TALKING TO DIRECTIVES
 
-var app = angular.module("twitterApp", []);
+///////////////////////////////////////////
+//Isolate Scope =
+//////////////////////////////////////////
+
+//var app = angular.module("drinkApp", []);
+//
+//app.controller("AppCtrl", function() {
+//  var appctrl = this;
+//  appctrl.ctrlFlavor = "blackberry";
+//});
+//
+////this directive adds the input inside that div and binds flavor to ng-model. This allows flavor to pass an object which is the app.ctrl.ctrlFlavor which is then bound to the first input in the html.
+//app.directive("drink", function() {
+//  return {
+//    scope: {
+//      //expects to bind itself to an object not a string. This binding goes both ways
+//      flavor: "="
+//    },
+//    template: '<input type="text" ng-model="flavor">'
+//  };
+//});
+
+
+
+
+///////////////////////////////////////////
+//Isolate Scope &
+//////////////////////////////////////////
+
+var app = angular.module("phoneApp", []);
 
 app.controller("AppCtrl", function() {
-  var appCtrl = this;
-  appCtrl.loadMoreTweets = function() {
-    alert("Loading tweets!");
-  };
-
-  appCtrl.deleteTweets = function() {
-    alert("deleting tweets");
+  var appctrl = this;
+  appctrl.callHome = function(message) {
+    alert(message);
   };
 });
 
-app.directive("enter", function() {
-  return function(scope, element, attrs) {
-    element.bind("mouseenter", function() {
-      scope.$apply(attrs.enter);
-    });
+app.directive("phone", function() {
+  return {
+    scope: {
+      dial: "&"
+    },
+    template: '<input type="text" ng-model="value">' +
+    '<div class="button" ng-click="dial({message:value})">Call home!</div>'
   };
 });
-
-

@@ -16,26 +16,42 @@
 </head>
 <body>
 
-  <!--<div ng-app="superhero">-->
-    <!--&lt;!&ndash;ELEMENT&ndash;&gt;-->
-    <!--<superman></superman>-->
 
-    <!--&lt;!&ndash;ATTRIB&ndash;&gt;-->
-    <!--<div superman></div>-->
+  <!--<div ng-app="choreApp">-->
+    <!--<div ng-controller="ChoreCtrl as choreCtrl">-->
+      <!--<kid done="choreCtrl.logChore(taskB)"></kid>-->
+      <!--<kid done="choreCtrl.logChore(taskB)"></kid>-->
+    <!--</div>-->
   <!--</div>-->
 
 
-
-  <!--<div ng-app="behaviorApp">-->
-    <!--&lt;!&ndash;add behaviors as attributes&ndash;&gt;-->
-    <!--<div enter="panel" leave>I'm content!</div>-->
+  <!--<div ng-app="drinkApp">-->
+    <!--<div ng-controller="AppCtrl as appctrl">-->
+      <!--<input type="text" ng-model="appctrl.ctrlFlavor">-->
+      <!--&lt;!&ndash;This gets evauluated as a string &ndash;&gt;-->
+      <!--&lt;!&ndash;and is bound to the ng-mdoel&ndash;&gt;-->
+      <!--<div drink flavor="{{appctrl.ctrlFlavor}}"></div>-->
+    <!--</div>-->
   <!--</div>-->
 
 
+  <!--<div ng-app="drinkApp">-->
+    <!--<div ng-controller="AppCtrl as appctrl">-->
+      <!--Ctrl-->
+      <!--<input type="text" ng-model="appctrl.ctrlFlavor">-->
+      <!--<br>-->
 
-  <div ng-app="twitterApp">
-    <div ng-controller="AppCtrl as appCtrl">
-      <div enter="appCtrl.deleteTweets()">Roll over to load more tweets</div>
+      <!--Dir-->
+      <!--&lt;!&ndash;we dont use the {{}} because we aren't passing a string&ndash;&gt;-->
+      <!--<div drink flavor="appctrl.ctrlFlavor"></div>-->
+    <!--</div>-->
+  <!--</div>-->
+
+  <div ng-app="phoneApp">
+    <div ng-controller="AppCtrl as appctrl">
+      <div phone dial="appctrl.callHome(message)"></div>
+      <div phone dial="appctrl.callHome(message)"></div>
+      <div phone dial="appctrl.callHome(message)"></div>
     </div>
   </div>
 
