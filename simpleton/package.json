@@ -9,10 +9,13 @@
     "karma-ng-html2js-preprocessor": "^0.1.2"
   },
   "devDependencies": {
-    "karma": "^0.12.24",
+    "karma": "^0.12.31",
     "karma-chrome-launcher": "^0.1.5",
     "karma-jasmine": "^0.2.3"
   },
   "author": "Lukas Ruebbelke",
-  "license": "ISC"
+  "license": "ISC",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
 }
